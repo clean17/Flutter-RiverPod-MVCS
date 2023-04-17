@@ -19,9 +19,13 @@ class AuthRepository {
   }
 
   Future<ResponseDTO> fetchLogin(LoginReqDTO loginReqDTO) async {
+    // 1. 통신 시작
     Response response = await dio.post(data: loginReqDTO.toJson(), '/login');
+    // 2. dto 파싱
     ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
     responseDTO.data = User.fromJson(responseDTO.data);
+    // 3. 토큰 받기
+    responseDTO.token = response.headers["authorization"].toString();
     return responseDTO;
   }
 }
