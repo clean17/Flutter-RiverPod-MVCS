@@ -1,33 +1,41 @@
-import 'package:intl/intl.dart';
+import 'dart:convert';
+
+User userFromJson(String str) => User.fromJson(json.decode(str));
+
+String userToJson(User data) => json.encode(data.toJson());
 
 class User {
-  final int id;
-  final String username;
-  final String email;
-  final DateTime created;
-  final DateTime updated;
-
   User({
     required this.id,
     required this.username,
+    required this.password,
     required this.email,
     required this.created,
     required this.updated,
   });
 
-  // 통신을 위해서 json 처럼 생긴 문자열 {"id":1} => Dart 오브젝트
+  int id;
+  String username;
+  dynamic password;
+  String email;
+  DateTime created;
+  DateTime updated;
+
+  factory User.fromJson(Map<String, dynamic> json) => User(
+        id: json["id"],
+        username: json["username"],
+        password: json["password"],
+        email: json["email"],
+        created: DateTime.parse(json["created"]),
+        updated: DateTime.parse(json["updated"]),
+      );
+
   Map<String, dynamic> toJson() => {
         "id": id,
         "username": username,
+        "password": password,
         "email": email,
-        "created": created,
-        "updated": updated
+        "created": created.toIso8601String(),
+        "updated": updated.toIso8601String(),
       };
-
-  User.fromJson(Map<String, dynamic> json)
-      : id = json["id"],
-        username = json["username"],
-        email = json["email"],
-        created = DateFormat("yyyy-mm-dd").parse(json["created"]),
-        updated = DateFormat("yyyy-mm-dd").parse(json["updated"]);
 }
