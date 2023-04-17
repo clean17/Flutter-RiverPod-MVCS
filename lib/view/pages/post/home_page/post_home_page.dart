@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_riverpod_blog_start/view/pages/post/home_page/post_home_body.dart';
+import 'package:flutter_riverpod_blog_start/view/components/custom_navigation.dart';
+import 'package:flutter_riverpod_blog_start/view/pages/post/home_page/components/post_home_body.dart';
 import 'package:logger/logger.dart';
-
-import '../../../components/custom_navigation.dart';
 
 class PostHomePage extends StatelessWidget {
   PostHomePage({Key? key}) : super(key: key);
@@ -19,9 +17,15 @@ class PostHomePage extends StatelessWidget {
       key: scaffoldKey,
       drawer: CustomNavigation(scaffoldKey),
       appBar: AppBar(
-        title: const Text(""),
+          title: Text(""),
       ),
-      body: PostHomeBody(),
+      body: RefreshIndicator(
+        key: refreshKey,
+        onRefresh: () async {
+
+        },
+        child: PostHomeBody(),
+      ),
     );
   }
 }

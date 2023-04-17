@@ -13,7 +13,6 @@ class Move {
   static String userDetailPage = "/user/detail";
 }
 
-
 Map<String, Widget Function(BuildContext)> getRouters() {
   return {
     Move.joinPage: (context) => JoinPage(),

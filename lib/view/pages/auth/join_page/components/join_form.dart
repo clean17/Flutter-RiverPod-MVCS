@@ -1,40 +1,18 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod_blog_start/core/utils/validator_util.dart';
 import 'package:flutter_riverpod_blog_start/view/components/custom_elevated_button.dart';
 import 'package:flutter_riverpod_blog_start/view/components/custom_text_form_field.dart';
 
-class JoinBody extends StatelessWidget {
+class JoinForm extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final _username = TextEditingController(); // 추가
   final _password = TextEditingController(); // 추가
   final _email = TextEditingController();
-
-  JoinBody({super.key});
+  JoinForm({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: ListView(
-        children: [
-          Container(
-            alignment: Alignment.center,
-            height: 200,
-            child: const Text(
-              "회원가입 페이지",
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          _joinForm(), // 추가
-        ],
-      ),
-    );
-  }
-
-  Widget _joinForm() {
     return Form(
       key: _formKey,
       child: Column(
@@ -57,11 +35,15 @@ class JoinBody extends StatelessWidget {
           CustomElevatedButton(
             text: "회원가입",
             funPageRoute: () {
-              if (_formKey.currentState!.validate()) {}
+              if (_formKey.currentState!.validate()) {
+
+              }
             },
           ),
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+
+            },
             child: const Text("로그인 페이지로 이동"),
           ),
         ],

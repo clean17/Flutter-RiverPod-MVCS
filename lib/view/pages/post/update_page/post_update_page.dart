@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod_blog_start/view/pages/post/update_page/post_update_body.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod_blog_start/view/pages/post/update_page/components/post_update_body.dart';
 import 'package:logger/logger.dart';
 
 class PostUpdatePage extends StatelessWidget {
-  const PostUpdatePage({super.key});
+
+  PostUpdatePage({super.key});
 
   @override
   Widget build(BuildContext context) {
