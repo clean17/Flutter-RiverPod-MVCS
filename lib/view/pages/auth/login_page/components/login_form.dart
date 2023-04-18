@@ -45,7 +45,9 @@ class LoginForm extends ConsumerWidget {
             child: const Text("아직 회원가입이 안되어 있나요?"),
           ),
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, Move.postHomePage);
+            },
             child: const Text("홈페이지 로그인 없이 가보는 테스트"),
           ),
         ],

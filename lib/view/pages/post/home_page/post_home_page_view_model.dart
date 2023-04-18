@@ -11,7 +11,7 @@ import 'package:flutter_riverpod_blog_start/provider/session_provider.dart';
 class PostHomePageViewModel extends StateNotifier<PostHomePageModel?> {
   PostHomePageViewModel(super.state);
 
-  void add(Post post) {
+  void notifyAdd(Post post) {
     if (state == null) {
       List<Post> posts = [post]; // 입력된 데이터 추가
       state = PostHomePageModel(posts: posts);
@@ -22,19 +22,19 @@ class PostHomePageViewModel extends StateNotifier<PostHomePageModel?> {
     }
   }
 
-  void remove(int id) {
+  void notifyRemove(int id) {
     List<Post> posts = state!.posts;
     List<Post> newPosts = posts.where((e) => e.id != id).toList(); // true만 통과
     state = PostHomePageModel(posts: newPosts);
   }
 
-  void update(Post post) {
+  void notifyUpdate(Post post) {
     List<Post> posts = state!.posts;
     List<Post> newPosts = posts.map((e) => e.id == post.id ? post : e).toList();
     state = PostHomePageModel(posts: newPosts);
   }
 
-  void init(String jwt) async {
+  void notifyInit(String jwt) async {
     ResponseDTO responseDTO = await PostRepository().fetchPostList(jwt);
     state = PostHomePageModel(posts: responseDTO.data);
   }
@@ -50,9 +50,9 @@ class PostHomePageModel {
 // 창고 관리자 -> 이녀석으로 접근함
 // <창고, 데이터?> 필요
 // 프로바이더는 함수를 가진 뷰모델에 접근시켜주는 역할
-final postHomePageProvider =
-    StateNotifierProvider<PostHomePageViewModel, PostHomePageModel?>((ref) {
+final postHomePageProvider = StateNotifierProvider.autoDispose<
+    PostHomePageViewModel, PostHomePageModel?>((ref) {
   SessionUser sessionUser = ref.read(sessionProvider);
   return PostHomePageViewModel(null)
-    ..init(sessionUser.jwt!); // 로그인되어 있을때만 호출해야함
+    ..notifyInit(sessionUser.jwt!); // 로그인되어 있을때만 호출해야함
 });
