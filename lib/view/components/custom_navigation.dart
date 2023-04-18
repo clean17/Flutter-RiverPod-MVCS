@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod_blog_start/controller/user_controller.dart';
 import 'package:flutter_riverpod_blog_start/core/constants/size.dart';
 
 class CustomNavigation extends ConsumerWidget {
@@ -20,6 +21,7 @@ class CustomNavigation extends ConsumerWidget {
             children: [
               TextButton(
                 onPressed: () {
+                  // 스캐폴트키를 통해 클릭시 닫힘
                   scaffoldKey.currentState!.openEndDrawer();
                 },
                 child: const Text(
@@ -48,6 +50,8 @@ class CustomNavigation extends ConsumerWidget {
               const Divider(),
               TextButton(
                 onPressed: () {
+                  scaffoldKey.currentState!.openEndDrawer();
+                  ref.read(userControllerProvider).logOut();
                 },
                 child: const Text(
                   "로그아웃",

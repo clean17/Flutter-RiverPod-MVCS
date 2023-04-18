@@ -1,7 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod_blog_start/core/constants/http.dart';
 import 'package:flutter_riverpod_blog_start/model/user/user.dart';
+import 'package:logger/logger.dart';
 
-// 전역적으로 관리되는 프로바이더
 final sessionProvider = Provider<SessionUser>((ref) {
   return SessionUser();
 });
@@ -11,6 +12,7 @@ final sessionProvider = Provider<SessionUser>((ref) {
 // 2. JWT로 회원정보 받아봄 (I/O)
 // 3. OK -> loginSuccess() 호출
 // 4. FAIL -> loginPage로 이동
+// 로그인 정보를 가지고 있는 오브젝트 - 로그인 중이니 ? / 앱 로딩전에 실행해야함
 class SessionUser {
   User? user;
   String? jwt;
@@ -22,9 +24,12 @@ class SessionUser {
     isLogin = true;
   }
 
-  void logoutSuccess() {
+  Future<void> logoutSuccess() async {
     user = null;
     jwt = null;
     isLogin = false;
+    // I/O가 발생하는 모든 접근은 비동기 !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    await secureStorage.delete(key: "jwt");
+    Logger().d("세션 종료 및 디바이서 jwt 삭제");
   }
 }
