@@ -4,6 +4,7 @@ import 'package:flutter_riverpod_blog_start/core/constants/move.dart';
 import 'package:flutter_riverpod_blog_start/model/user/user_repository.dart';
 import 'package:flutter_riverpod_blog_start/provider/session_provider.dart';
 
+// 뷰가 아닌곳에서 컨텍스트에 접근하기 위함
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {

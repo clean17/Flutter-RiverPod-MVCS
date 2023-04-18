@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod_blog_start/model/post/post.dart';
+import 'package:flutter_riverpod_blog_start/view/pages/post/detail_page/post_detail_page.dart';
 import 'package:flutter_riverpod_blog_start/view/pages/post/home_page/components/post_home_list_item.dart';
 import 'package:flutter_riverpod_blog_start/view/pages/post/home_page/post_home_page_view_model.dart';
 import 'package:logger/logger.dart';
@@ -25,7 +26,14 @@ class PostHomeBody extends ConsumerWidget {
       itemCount: posts.length,
       itemBuilder: (context, index) {
         return InkWell(
-          onTap: () {},
+          onTap: () {
+            // 이동할 페이지를 여기서 만든다. ( 디테일 페이지를 만들지 않았을 경우인가 ?)
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PostDetailPage(posts[index].id),
+                ));
+          },
           child: PostHomeListItem(posts[index]),
         );
       },

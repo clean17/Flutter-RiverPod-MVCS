@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod_blog_start/controller/user_controller.dart';
+import 'package:flutter_riverpod_blog_start/core/constants/move.dart';
 import 'package:flutter_riverpod_blog_start/core/constants/size.dart';
 
 class CustomNavigation extends ConsumerWidget {
@@ -22,6 +23,7 @@ class CustomNavigation extends ConsumerWidget {
               TextButton(
                 onPressed: () {
                   // 스캐폴트키를 통해 클릭시 닫힘
+                  Navigator.pushNamed(context, Move.postWritePage);
                   scaffoldKey.currentState!.openEndDrawer();
                 },
                 child: const Text(
