@@ -8,8 +8,8 @@ final dio = Dio(BaseOptions(
 ));
 
 void main() async {
-  // await fetchLogin_test();
-  await fetchJoin_test();
+  await fetchLogin_test();
+  // await fetchJoin_test();
   // await UserRepository().fetchJoin(JoinReqDTO(
   //     name: "mate123", password: "1234", email: "mete@natem.com"));
 }
@@ -30,11 +30,11 @@ Future<void> fetchJwt_test() async {
 
 Future<void> fetchLogin_test() async {
   // given
-  String name = "ssar";
+  String email = "ssar1@naver.com";
   String password = "1234";
 
   // when
-  Map<String, dynamic> requestBody = {"name": name, "password": password};
+  Map<String, dynamic> requestBody = {"email": email, "password": password};
 
   // 1. 통신 시작
   Response response = await dio.post("/login", data: requestBody);

@@ -95,9 +95,8 @@ class UserController {
     }
   }
 
-  Future<void> login(String username, String password) async {
-    LoginReqDTO loginReqDTO =
-        LoginReqDTO(username: username, password: password);
+  Future<void> login(String email, String password) async {
+    LoginReqDTO loginReqDTO = LoginReqDTO(email: email, password: password);
     ResponseDTO responseDTO = await UserRepository().fetchLogin(loginReqDTO);
     if (responseDTO.code == 1) {
       // 1. 토큰을 휴대폰에 저장

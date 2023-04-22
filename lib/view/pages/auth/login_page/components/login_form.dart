@@ -20,8 +20,8 @@ class LoginForm extends ConsumerWidget {
         children: [
           CustomTextFormField(
             controller: _username,
-            hint: "Username",
-            funValidator: validateUsername(),
+            hint: "Email",
+            funValidator: validateEmail(),
           ),
           CustomTextFormField(
             controller: _password,
